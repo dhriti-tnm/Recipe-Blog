@@ -1,0 +1,30 @@
+{% extends 'main.html' %}
+{% block Title %}
+Add Recipe
+{% endblock %}
+
+{% block Content %}
+
+<div class="container mt-5">
+    <form class="col-6 mx-auto" method="post" enctype="multipart/form-data">
+        {% csrf_token %}
+        <h2 class="container">Add New Recipe</h2>
+        <div class="mb-3">
+            <label for="recipe name" class="form-label">Recipe Name</label>
+            <input name="recipe_name" required type="text" class="form-control">
+        </div>
+        <div class="mb-3">
+            <label for="recipe desc" class="form-label" >Recipe Description</label>
+            <textarea name="recipe_description" class="form-control"></textarea>
+        </div>
+        <div class="mb-3">
+            <label for="recipe desc" class="form-label">Recipe Image</label>
+            <input name="recipe_image" type="file" class="form-control">
+        </div>
+        <a href="{% url 'recipe_list' %}" class="btn btn-primary">
+            Back
+        </a>
+        <button type="submit" class="btn btn-primary">Add Recipe</button>
+    </form>
+</div>
+{% endblock %}

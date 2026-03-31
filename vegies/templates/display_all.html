@@ -1,0 +1,46 @@
+{% extends 'main.html' %}
+{% block Title %}
+Recipes
+{% endblock%}
+
+{% block Content %}
+<div class="container">
+    <h2> ALL RECIPES </h2>
+    <form method="GET" class="d-flex justify-content-end mb-3">
+        <input type="text" name="q" class="form-control me-2" placeholder="Search recipes..." value="{{ request.GET.q }}">
+        <button type="submit" class="btn btn-primary">Search</button>
+    </form>
+    <table class="table">
+    <thead>
+        <tr>
+        <th scope="col"></th>
+        <th scope="col">Recipe Name</th>
+        <th scope="col">Recipe Description</th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for recipe in Recipes %}
+        <tr>
+        <th scope="row">
+            <img src="/media/{{recipe.recipe_image}}" style="width: 100px;">
+        </th>
+        <td>{{recipe.recipe_name}}</td>
+        <td>{{recipe.recipe_description |truncatewords:20}}
+            <br>
+            <a href="{% url 'recipe_detail' recipe.id %}">View More</a>
+        </td>
+        </tr>
+        {% endfor %}
+    </tbody>
+    </table>
+    {% if user.is_authenticated %}
+    <div class="text-center mt-4">
+        <a href="{% url 'add_recipe' %}" class="btn btn-primary">
+            + Add Recipe
+        </a>
+    </div>
+    {% endif %}
+    
+</div>
+</div>
+{% endblock%}

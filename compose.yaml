@@ -1,0 +1,16 @@
+version: '3.8'
+
+services:
+  web:
+    build: .
+    ports:
+      - "8000:8000"
+    volumes:
+      - .:/app
+      - sqlite_data:/app/data
+    command: python manage.py runserver 0.0.0.0:8000
+
+volumes:
+  sqlite_data:
+
+# This docker-compose file defines a service named "web" that builds the Docker image from the current directory (where the Dockerfile is located). It maps port 8000 of the container to port 8000 on the host machine, allowing you to access the Django application via http://localhost:8000. The volumes section mounts the current directory into the container and also creates a named volume for the SQLite database to persist data across container restarts. The command specified runs the Django development server when the container starts.

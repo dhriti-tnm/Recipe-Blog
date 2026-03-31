@@ -1,0 +1,60 @@
+{% extends 'main.html' %}
+
+{% block Title %}
+{{ recipe.recipe_name }}
+{% endblock %}
+
+{% block Content %}
+<div class="container mt-5">
+    <form class="col-6 mx-auto card p-4 shadow" method="post" enctype="multipart/form-data">
+        {% csrf_token %}
+
+        <h3 class="text-center mb-4">Update Recipe</h3>
+
+        <!-- Recipe Name -->
+        <div class="mb-3">
+            <label class="form-label">Recipe Name</label>
+            <input name="recipe_name"
+                   value="{{ recipe.recipe_name }}"
+                   required
+                   type="text"
+                   class="form-control">
+        </div>
+
+        <!-- Recipe Description -->
+        <div class="mb-3">
+            <label class="form-label">Recipe Description</label>
+            <textarea name="recipe_description"
+                      class="form-control"
+                      rows="4">{{ recipe.recipe_description }}</textarea>
+        </div>
+
+        <!-- Current Image Preview -->
+        <div class="mb-3 text-center">
+            <label class="form-label d-block">Current Image</label>
+            <img src="{{ recipe.recipe_image.url }}"
+                 class="img-fluid rounded mb-2"
+                 style="max-height:200px;">
+        </div>
+
+        <!-- Upload New Image -->
+        <div class="mb-3">
+            <label class="form-label">Change Image</label>
+            <input name="recipe_image"
+                   type="file"
+                   class="form-control">
+        </div>
+
+        <!-- Buttons -->
+        <div class="text-center">
+            <a href="{% url 'recipe_list' %}" class="btn btn-secondary">
+                Back
+            </a>
+            <button type="submit" class="btn btn-warning">
+                Update Recipe
+            </button>
+        </div>
+
+    </form>
+</div>
+{% endblock %}
