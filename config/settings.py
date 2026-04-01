@@ -129,5 +129,5 @@ STATICFILES_DIR = {
     os.path.join(BASE_DIR , "public/static")
 }
 
-MEDIA_ROOT =  os.path.join(BASE_DIR, 'public/static') 
+MEDIA_ROOT =  os.path.join(BASE_DIR, 'docker_media') 
 MEDIA_URL = '/media/'
