@@ -3,6 +3,6 @@
 db.sqlite3
 .env
 venv/
-data/
-docker_media/
 */migrations/
+
+new.txt
