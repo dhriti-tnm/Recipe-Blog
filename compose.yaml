@@ -3,17 +3,20 @@ version: '3.8'
 services:
   web:
     build: .
-    image: neonbluewhale/recipe-blog:v1.00
+    image: neonbluewhale/recipe-blog:latest
     ports:
-      - "8081:8000"
+      - "8000:8000"
+    
     volumes:
       - .:/app
       - sqlite_data:/recipe-app/data
       - ./docker_media:/recipe-app/docker_media
+    
     environment:
       DJANGO_SUPERUSER_USERNAME: admin
       DJANGO_SUPERUSER_EMAIL: admin@example.com
       DJANGO_SUPERUSER_PASSWORD: 1234
+    
     command: sh -c "python manage.py migrate && python manage.py createsuperuser --noinput || true && python manage.py runserver 0.0.0.0:8000"
 
 volumes:
