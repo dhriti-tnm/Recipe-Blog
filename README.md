@@ -6,7 +6,7 @@ A Django-based recipe management system demonstrating full-stack backend develop
 
 ## Overview
 
-Recipe Blog is a web application built with Django that allows users to create, manage, and search recipes with image support. The project is containerized using Docker and integrates a CI/CD pipeline using Jenkins, triggered via GitHub webhooks.
+Recipe Blog is a simple web application built with Django that allows users to create, manage, and search recipes with image support. The project is containerized using Docker and integrates a CI/CD pipeline using Jenkins, triggered via GitHub webhooks.
 
 This project was developed primarily for learning and experimentation while also following production-like development practices.
 
@@ -67,7 +67,7 @@ The project includes a Jenkins-based CI/CD pipeline configured to:
 - Trigger automatically via GitHub webhooks
 - Build and validate the application
 - Rebuild Docker images when changes are pushed
-- Support automated deployment workflow (based on pipeline configuration)
+- Support automated deployment workflow.
 
 ---
 
