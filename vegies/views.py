@@ -81,7 +81,11 @@ def recipe_detail(request, id):
 
 @login_required
 def recipe_update(request, id):
-    recipe = Recipe.objects.get(id=id)
+    recipe = get_object_or_404(Recipe,id=id)
+
+    if recipe.user != request.user:
+        messages.error(request, "You are not allowed to edit this recipe")
+        return redirect('recipe_list')
 
     if request.method == 'POST':
         recipe.recipe_name = request.POST.get('recipe_name')
@@ -100,6 +104,10 @@ def recipe_update(request, id):
 @login_required
 def recipe_delete(request, id):
     recipe = get_object_or_404(Recipe,id=id)
+    if recipe.user != request.user:
+        messages.error(request, "You are not allowed to delete this recipe")
+        return redirect('recipe_list')
+    
     recipe.delete()
     messages.success(request, 'Recipe deleted successfully!')
     return redirect('recipe_list')
